@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Grd_grado extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'grd_nombre'
+    ];
 }

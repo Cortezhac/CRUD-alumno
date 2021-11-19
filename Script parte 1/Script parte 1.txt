@@ -1,0 +1,31 @@
+USE Registro;
+
+CREATE TABLE grd_grado(
+	grd_id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
+	grd_nombre VARCHAR(100)
+);
+
+CREATE TABLE alm_alumno(
+	alm_id INT UNIQUE AUTO_INCREMENT PRIMARY KEY, 
+	alm_codigo VARCHAR(100), 
+	alm_nombre VARCHAR(300), 
+	alm_edad INT, 
+	alm_sexo VARCHAR(100), 
+	alm_id_grd INT,
+	alm_observacion VARCHAR(300)
+);
+
+ALTER TABLE alm_alumno ADD CONSTRAINT  FOREIGN KEY (alm_id_grd) REFERENCES grd_grado(grd_id);
+
+CREATE TABLE mat_materia(
+	mat_id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
+	mat_nombre VARCHAR(100)
+);
+
+CREATE TABLE mxg_materiasxgrado(
+	mxg_id INT UNIQUE PRIMARY KEY,
+	mxg_id_grd INT,
+	mxg_id_mat INT,
+	FOREIGN KEY (mxg_id_grd) REFERENCES grd_grado(grd_id),
+	FOREIGN KEY (mxg_id_mat) REFERENCES mat_materia(mat_id)
+);
